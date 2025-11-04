@@ -1,0 +1,31 @@
+<section class="mt-5 mb-5">
+  
+  <app-atomo-contenedor-formulario>
+    
+    <app-atomo-titulo-formulario texto="Añadir una receta"></app-atomo-titulo-formulario>
+
+    <form>
+      
+      <app-molecula-campo-receta
+        [receta]="recipeModel()"
+        (recetaChange)="onModelChange($event)">
+      </app-molecula-campo-receta>
+
+      <div class="d-flex justify-content-start mt-4">
+        
+        <app-atomo-boton
+          texto="Añadir receta"
+          claseBootstrap="btn-success"
+          type="submit" 
+          (clickBoton)="onAnadirReceta()">
+        </app-atomo-boton>
+        
+        <app-atomo-boton
+          texto="Limpiar"
+          claseBootstrap="btn-secondary ms-3"
+          (clickBoton)="onLimpiar()">
+        </app-atomo-boton>
+      </div>
+    </form>
+  </app-atomo-contenedor-formulario>
+</section>

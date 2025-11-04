@@ -10,10 +10,12 @@ import { AtomoCampoFormulario } from '../../atoms/atomo-campo-formulario/atomo-c
   styleUrl: './molecula-campo-receta.scss',
 })
 export class MoleculaCampoReceta {
-  receta = input.required<NewRecipe>();
+receta = input.required<NewRecipe>();
 
+  // Salida para notificar cualquier cambio en el modelo
   recetaChange = output<NewRecipe>();
 
+  // Notifica al padre que un campo ha cambiado
   onFieldChange(campo: keyof NewRecipe, valor: string) {
     const nuevoModelo: NewRecipe = {
       ...this.receta(),

@@ -8,7 +8,8 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './atomo-campo-formulario.scss',
 })
 export class AtomoCampoFormulario {
-valor = input<string>('');
+  valor = input<string>('');
+  
   valorChange = output<string>();
 
   label = input.required<string>();
