@@ -1,0 +1,16 @@
+<form class="d-flex" role="search" (submit)="onBuscar()">
+  
+  <div class="input-group">
+    <app-atomo-campo-busqueda
+      [valor]="terminoBusqueda()"
+      (valorChange)="onTerminoChange($event)"´
+      [placeholder]="placeholder()">
+    </app-atomo-campo-busqueda>
+    
+    <app-atomo-boton
+      texto="Buscar"
+      claseBotonBootsStrap="btn-outline-success" 
+      (clickBoton)="onBuscar()">
+    </app-atomo-boton>
+  </div>
+</form>
