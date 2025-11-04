@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="col-md-6">
+    <app-atomo-campo-formulario
+      label="Nombre de la receta"
+      placeholder="Ej. Paella valenciana"
+      [valor]="receta().nombre"
+      (valorChange)="onFieldChange('nombre', $event)">
+    </app-atomo-campo-formulario>
+  </div>
+  
+  <div class="col-md-6">
+    <app-atomo-campo-formulario
+      label="URL de la imagen"
+      placeholder="https://ejemplo.com/imagen.jpg"
+      [valor]="receta().urlImagen"
+      (valorChange)="onFieldChange('urlImagen', $event)">
+    </app-atomo-campo-formulario>
+  </div>
+
+  <div class="col-12">
+    <app-atomo-campo-formulario
+      label="Lista de ingredientes"
+      ayuda="Un ingrediente por línea"
+      tipo="textarea"
+      [valor]="receta().listaIngredientes"
+      (valorChange)="onFieldChange('listaIngredientes', $event)">
+    </app-atomo-campo-formulario>
+  </div>
+</div>
