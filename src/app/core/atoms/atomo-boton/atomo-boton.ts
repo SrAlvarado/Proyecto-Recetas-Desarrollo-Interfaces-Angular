@@ -10,7 +10,7 @@ export class AtomoBoton {
   texto = input<string>('Hacer click');
   claseBotonBootsStrap = input<string>('btn-primary')
   clickBoton = output<void>();
-
+  tipo = input<string>('button');
   manejarClick() {
     this.clickBoton.emit();
   }

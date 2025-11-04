@@ -8,10 +8,10 @@ import { OrganismoCabecera } from "../../core/organisms/organismo-cabecera/organ
 import { Recipe } from '../../core/models/recipe-model';
 
 const RECETAS_MOCK: Recipe[] = [
-  { id: 1, nombre: 'Paella Valenciana', imagenUrl: 'url_paella.jpg', tiempoPreparacion: '1h 40 min', comensales: 8, ingredientesClave: ['Arroz', 'Pollo', 'Verduras'], fechaPublicacion: 'hace 2 días' },
-  { id: 2, nombre: 'Pizza', imagenUrl: 'url_pizza.jpg', tiempoPreparacion: '15 min', comensales: 2, ingredientesClave: ['Masa', 'Champiñones', 'Queso'], fechaPublicacion: 'hace 1 semana' },
-  { id: 3, nombre: 'Lentejas', imagenUrl: 'url_lentejas.jpg', tiempoPreparacion: '60 min', comensales: 6, ingredientesClave: ['Lentejas', 'Zanahoria', 'Puerro'], fechaPublicacion: 'hace 3 días' },
-  { id: 4, nombre: 'Tarta de Manzana', imagenUrl: 'url_tarta.jpg', tiempoPreparacion: '50 min', comensales: 8, ingredientesClave: ['Manzanas', 'Harina', 'Azúcar'], fechaPublicacion: 'hace 4 días' },
+  { id: 1, nombre: 'Paella Valenciana', imagenUrl: '/receta1.jpg', tiempoPreparacion: '1h 40 min', comensales: 8, ingredientesClave: ['Arroz', 'Pollo', 'Verduras'], fechaPublicacion: 'hace 2 días' },
+  { id: 2, nombre: 'Pizza', imagenUrl: 'receta2.jpg', tiempoPreparacion: '15 min', comensales: 2, ingredientesClave: ['Masa', 'Champiñones', 'Queso'], fechaPublicacion: 'hace 1 semana' },
+  { id: 3, nombre: 'Lentejas', imagenUrl: 'receta3.jpg', tiempoPreparacion: '60 min', comensales: 6, ingredientesClave: ['Lentejas', 'Zanahoria', 'Puerro'], fechaPublicacion: 'hace 3 días' },
+  { id: 4, nombre: 'Tarta de Manzana', imagenUrl: 'receta4.jpg', tiempoPreparacion: '50 min', comensales: 8, ingredientesClave: ['Manzanas', 'Harina', 'Azúcar'], fechaPublicacion: 'hace 4 días' },
 ];
 
 @Component({
