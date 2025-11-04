@@ -1,18 +1,12 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { NewRecipe } from '../../core/models/new-recipe-model';
 import { Router } from '@angular/router';
 import { NavigationLink } from '../../core/models/navigation-link-model';
 import { OrganismoFormularioReceta } from "../../core/organisms/organismo-formulario-receta/organismo-formulario-receta";
 import { OrganismoRecetasDestacadas } from "../../core/organisms/organismo-recetas-destacadas/organismo-recetas-destacadas";
 import { OrganismoCabecera } from "../../core/organisms/organismo-cabecera/organismo-cabecera";
-import { Recipe } from '../../core/models/recipe-model';
+import { RecetasService } from '../../core/services/recetas';
 
-const RECETAS_MOCK: Recipe[] = [
-  { id: 1, nombre: 'Paella Valenciana', imagenUrl: '/receta1.jpg', tiempoPreparacion: '1h 40 min', comensales: 8, ingredientesClave: ['Arroz', 'Pollo', 'Verduras'], fechaPublicacion: 'hace 2 días' },
-  { id: 2, nombre: 'Pizza', imagenUrl: 'receta2.jpg', tiempoPreparacion: '15 min', comensales: 2, ingredientesClave: ['Masa', 'Champiñones', 'Queso'], fechaPublicacion: 'hace 1 semana' },
-  { id: 3, nombre: 'Lentejas', imagenUrl: 'receta3.jpg', tiempoPreparacion: '60 min', comensales: 6, ingredientesClave: ['Lentejas', 'Zanahoria', 'Puerro'], fechaPublicacion: 'hace 3 días' },
-  { id: 4, nombre: 'Tarta de Manzana', imagenUrl: 'receta4.jpg', tiempoPreparacion: '50 min', comensales: 8, ingredientesClave: ['Manzanas', 'Harina', 'Azúcar'], fechaPublicacion: 'hace 4 días' },
-];
 
 @Component({
   selector: 'app-pagina-inicio',
@@ -21,9 +15,12 @@ const RECETAS_MOCK: Recipe[] = [
   styleUrl: './pagina-inicio.scss',
 })
 export class PaginaInicio {
-recetasDestacadas = signal<Recipe[]>(RECETAS_MOCK);
   
-  // Datos para el Organismo Cabecera
+  private recetasService = inject(RecetasService);
+  private router = inject(Router);
+  
+  recetasDestacadas = this.recetasService.recetas$;
+
   menuPrincipal: NavigationLink[] = [
     { texto: 'Inicio', ruta: '/' },
     { texto: 'Recetas', ruta: '/recetas' },
@@ -36,22 +33,22 @@ recetasDestacadas = signal<Recipe[]>(RECETAS_MOCK);
     { texto: 'Recetas', ruta: '/mis-recetas' }
   ];
 
-  constructor(private router: Router) {}
-
-  // --- LÓGICA DE INTERACCIÓN ---
+  onNuevaReceta(nuevaReceta: NewRecipe) {
+    this.recetasService.anadirReceta(nuevaReceta).subscribe({
+      next: (receta) => {
+        console.log('Receta añadida con éxito:', receta.nombre);
+      },
+      error: (err) => {
+        console.error('Error al añadir receta:', err);
+      }
+    });
+  }
 
   onVerTodasRecetas() {
-    console.log('Navegando a la página de todas las recetas...');
     this.router.navigate(['/recetas']); 
   }
 
   onNavegarDetalle(recetaId: number) {
-    console.log('Navegando a la receta con ID:', recetaId);
     this.router.navigate(['/recetas', recetaId]);
-  }
-
-  onNuevaReceta(nuevaReceta: NewRecipe) {
-    console.log('Nueva receta lista para enviar al servidor:', nuevaReceta);
- 
   }
 }
