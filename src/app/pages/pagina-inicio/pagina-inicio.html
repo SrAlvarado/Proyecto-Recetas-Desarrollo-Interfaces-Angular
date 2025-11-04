@@ -1,0 +1,20 @@
+<organismo-cabecera
+  [enlacesPrincipales]="menuPrincipal"
+  [enlacesUsuario]="menuUsuario">
+</organismo-cabecera>
+
+<main class="container mt-4">
+
+  <app-organismo-recetas-destacadas
+    [recetas]="recetasDestacadas()"
+    (verTodas)="onVerTodasRecetas()"
+    (navegarDetalle)="onNavegarDetalle($event)">
+  </app-organismo-recetas-destacadas>
+
+  <hr class="my-5">
+
+  <app-organismo-formulario-receta
+    (anadirReceta)="onNuevaReceta($event)">
+  </app-organismo-formulario-receta>
+
+</main>

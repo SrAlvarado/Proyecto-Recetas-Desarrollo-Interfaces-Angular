@@ -1,0 +1,34 @@
+<div class="card h-100">
+    
+  <img 
+    [src]="receta().imagenUrl" 
+    class="card-img-top" 
+    [alt]="receta().nombre"
+    style="height: 200px; object-fit: cover;"> <div class="card-body">
+    
+    <h5 class="card-title">{{ receta().nombre }}</h5>
+
+    <div class="d-flex mb-2">
+      <app-atomo-medida-tiempo etiqueta="Tiempo" [valor]="receta().tiempoPreparacion"></app-atomo-medida-tiempo>
+      <app-atomo-medida-tiempo etiqueta="Comensales" [valor]="receta().comensales"></app-atomo-medida-tiempo>
+    </div>
+    
+    @for (ingrediente of receta().ingredientesClave; track $index) {
+        <app-atomo-etiqueta-ingrediente [nombre]="ingrediente"></app-atomo-etiqueta-ingrediente>
+    }
+
+  </div>
+  
+  <div class="card-footer bg-white border-0 pt-0">
+    
+    <div class="d-flex justify-content-between align-items-center">
+      <app-atomo-boton
+        texto="Ver receta"
+        claseBootstrap="btn-primary"
+        (clickBoton)="onVerReceta()">
+      </app-atomo-boton>
+
+      <app-atomo-texto-informativo [texto]="'Publicado ' + receta().fechaPublicacion"></app-atomo-texto-informativo>
+    </div>
+  </div>
+</div>
