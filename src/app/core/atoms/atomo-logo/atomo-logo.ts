@@ -1,11 +1,13 @@
-import { Component } from '@angular/core';
-
+import { Component, input } from '@angular/core';
+import { RouterLink } from '@angular/router';
 @Component({
-  selector: 'app-atomo-logo',
-  imports: [],
-  templateUrl: './atomo-logo.html',
-  styleUrl: './atomo-logo.scss',
+  selector: 'atomo-logo', 
+  imports: [RouterLink], 
+  templateUrl: './atomo-logo.html', 
+  styleUrl: './atomo-logo.scss', 
 })
-export class AtomoLogo {
 
+export class AtomoLogoComponent { 
+  textoLogo = input('Mi Recetario');
+  rutaInicio = input("/");
 }
