@@ -1,8 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { NewRecipe } from '../../core/models/new-recipe-model';
 import { Router } from '@angular/router';
 import { NavigationLink } from '../../core/models/navigation-link-model';
 import { OrganismoFormularioReceta } from "../../core/organisms/organismo-formulario-receta/organismo-formulario-receta";
+import { OrganismoRecetasDestacadas } from "../../core/organisms/organismo-recetas-destacadas/organismo-recetas-destacadas";
+import { OrganismoCabecera } from "../../core/organisms/organismo-cabecera/organismo-cabecera";
+import { Recipe } from '../../core/models/recipe-model';
 
 const RECETAS_MOCK: Recipe[] = [
   { id: 1, nombre: 'Paella Valenciana', imagenUrl: 'url_paella.jpg', tiempoPreparacion: '1h 40 min', comensales: 8, ingredientesClave: ['Arroz', 'Pollo', 'Verduras'], fechaPublicacion: 'hace 2 días' },
@@ -13,7 +16,7 @@ const RECETAS_MOCK: Recipe[] = [
 
 @Component({
   selector: 'app-pagina-inicio',
-  imports: [OrganismoFormularioReceta],
+  imports: [OrganismoFormularioReceta, OrganismoRecetasDestacadas, OrganismoCabecera],
   templateUrl: './pagina-inicio.html',
   styleUrl: './pagina-inicio.scss',
 })

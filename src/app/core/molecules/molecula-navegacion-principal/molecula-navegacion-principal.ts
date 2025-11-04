@@ -4,7 +4,7 @@ import { AtomoEnlaceNavegacion } from '../../atoms/atomo-enlace-navegacion/atomo
 import { NavigationLink } from '../../models/navigation-link-model';
 
 @Component({
-  selector: 'molecula-navegacion-principal',
+  selector: 'app-molecula-navegacion-principal',
   standalone: true,
   imports: [AtomoLogoComponent,AtomoEnlaceNavegacion],
   templateUrl: './molecula-navegacion-principal.html',
