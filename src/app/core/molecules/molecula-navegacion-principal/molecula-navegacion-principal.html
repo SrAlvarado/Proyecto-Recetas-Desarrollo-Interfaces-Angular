@@ -1,0 +1,33 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+  <div class="container-fluid">
+    
+    <atomo-logo 
+      textoLogo="Mi Recetario" 
+      rutaInicio="/">
+    </atomo-logo>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse" id="navbarNav">
+      
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        @for (enlace of enlaces(); track $index) { 
+          <app-atomo-enlace-navegacion
+            [texto]="enlace.texto"
+            [ruta]="enlace.ruta">
+          </app-atomo-enlace-navegacion>
+        }
+        @empty {
+          <li class="nav-item">
+             <span class="nav-link text-muted">No hay opciones de navegación</span>
+          </li>
+        }
+      </ul>
+
+      <div class="d-flex">
+        </div>
+    </div>
+  </div>
+</nav><p>molecula-navegacion-principal works!</p>
