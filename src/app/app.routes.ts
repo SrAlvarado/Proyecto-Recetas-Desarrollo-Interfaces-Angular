@@ -1,26 +1,26 @@
 import { Routes } from '@angular/router';
 
 // 1. Importamos tu nuevo componente de página
-import { PaginaInicio } from './pages/pagina-inicio/pagina-inicio'; 
+import { PaginaInicioComponent } from './pages/pagina-inicio/pagina-inicio'; 
 
 export const routes: Routes = [
   {
     // 2. Definimos la ruta raíz ('/')
     path: '', 
-    component: PaginaInicio,
+    component: PaginaInicioComponent,
     title: 'Mi Recetario' // Título que se mostrará en la pestaña del navegador
   },
   
   // 3. Rutas futuras para otras secciones
   {
     path: 'recetas',
-   
-    component: PaginaInicio, 
+
+    component: PaginaInicioComponent, 
     title: 'Listado de Recetas'
   },
   {
     path: 'contacto',
-    component: PaginaInicio, 
+    component: PaginaInicioComponent, 
     title: 'Contacto'
   },
   

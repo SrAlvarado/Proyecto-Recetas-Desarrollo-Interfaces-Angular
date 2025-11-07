@@ -4,7 +4,8 @@
     [src]="receta().imagenUrl" 
     class="card-img-top" 
     [alt]="receta().nombre"
-    style="height: 200px; object-fit: cover;"> <div class="card-body">
+    style="height: 200px; object-fit: cover;"> 
+  <div class="card-body">
     
     <h5 class="card-title">{{ receta().nombre }}</h5>
 
@@ -18,17 +19,29 @@
     }
 
   </div>
-  
+  <div class="card h-100">
+    
   <div class="card-footer bg-white border-0 pt-0">
     
-    <div class="d-flex justify-content-between align-items-center">
-      <app-atomo-boton
-        texto="Ver receta"
-        claseBootstrap="btn-primary"
-        (clickBoton)="onVerReceta()">
-      </app-atomo-boton>
+    <div class="d-flex justify-content-between align-items-center mb-2">
+        
+        <div class="d-flex gap-2 w-100 me-2"> 
+            <app-atomo-boton
+                texto="Ver receta"
+                claseBotonBootsStrap="btn-primary w-100"
+                (clickBoton)="onVerReceta()">
+            </app-atomo-boton>
 
-      <app-atomo-texto-informativo [texto]="'Publicado ' + receta().fechaPublicacion"></app-atomo-texto-informativo>
+            <app-atomo-boton
+                texto="Borrar"
+                claseBotonBootsStrap="btn-outline-danger" 
+                (clickBoton)="onBorrarReceta()">
+            </app-atomo-boton>
+        </div>
+    </div>
+    
+    <div class="text-end">
+        <app-atomo-texto-informativo [texto]="'Publicado ' + receta().fechaPublicacion"></app-atomo-texto-informativo>
     </div>
   </div>
 </div>

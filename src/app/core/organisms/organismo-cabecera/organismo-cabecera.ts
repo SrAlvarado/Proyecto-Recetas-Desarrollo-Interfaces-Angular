@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { NavigationLink } from '../../models/navigation-link-model';
 import { AtomoEnlaceNavegacion } from "../../atoms/atomo-enlace-navegacion/atomo-enlace-navegacion";
 import { MoleculaNavegacionPrincipalComponent } from '../../molecules/molecula-navegacion-principal/molecula-navegacion-principal';
@@ -17,8 +17,9 @@ export class OrganismoCabecera {
 
   terminoBusqueda: string = '';
 
+  buscar = output<string>();
+  
   onBuscar(termino: string) {
-    this.terminoBusqueda = termino;
-    console.log('Búsqueda iniciada para:', termino);
+    this.buscar.emit(termino);
   }
 }

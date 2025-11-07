@@ -1,12 +1,13 @@
 <app-organismo-cabecera
   [enlacesPrincipales]="menuPrincipal"
-  [enlacesUsuario]="menuUsuario">
+  
+  (buscar)="onBuscarRecetas($event)">
 </app-organismo-cabecera>
 
 <main class="container mt-4">
 
   <app-organismo-recetas-destacadas
-    [recetas]="recetasDestacadas()"  
+    [recetas]="recetasMostradas()"
     (verTodas)="onVerTodasRecetas()"
     (navegarDetalle)="onNavegarDetalle($event)">
   </app-organismo-recetas-destacadas>

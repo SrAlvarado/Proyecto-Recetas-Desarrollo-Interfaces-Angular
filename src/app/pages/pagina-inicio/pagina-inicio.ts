@@ -1,47 +1,84 @@
-import { Component, inject, signal } from '@angular/core';
-import { NewRecipe } from '../../core/models/new-recipe-model';
-import { Router } from '@angular/router';
+import { Component, signal, inject } from '@angular/core';
+import { Router } from '@angular/router'; 
+import { FormsModule } from '@angular/forms'; // Necesario para la búsqueda
+import { Recipe } from '../../core/models/recipe-model';
 import { NavigationLink } from '../../core/models/navigation-link-model';
+import { NewRecipe } from '../../core/models/new-recipe-model';
 import { OrganismoFormularioReceta } from "../../core/organisms/organismo-formulario-receta/organismo-formulario-receta";
 import { OrganismoRecetasDestacadas } from "../../core/organisms/organismo-recetas-destacadas/organismo-recetas-destacadas";
 import { OrganismoCabecera } from "../../core/organisms/organismo-cabecera/organismo-cabecera";
-import { RecetasService } from '../../core/services/recetas';
 
+
+
+// --- MOCK DATA MOVILIZADO ---
+const INITIAL_RECIPES: Recipe[] = [
+  { id: 1, nombre: 'Paella Valenciana', imagenUrl: '/receta1.jpg', tiempoPreparacion: '1h 40 min', comensales: 8, ingredientesClave: ['Arroz', 'Pollo', 'Verduras'], fechaPublicacion: 'hace 2 días' },
+  { id: 2, nombre: 'Pizza', imagenUrl: '/receta2.jpg', tiempoPreparacion: '15 min', comensales: 2, ingredientesClave: ['Masa', 'Champiñones', 'Queso'], fechaPublicacion: 'hace 1 semana' },
+  { id: 3, nombre: 'Lentejas', imagenUrl: '/receta3.jpg', tiempoPreparacion: '60 min', comensales: 6, ingredientesClave: ['Lentejas', 'Zanahoria', 'Puerro'], fechaPublicacion: 'hace 3 días' },
+  { id: 4, nombre: 'Tarta de Manzana', imagenUrl: '/receta4.jpg', tiempoPreparacion: '50 min', comensales: 8, ingredientesClave: ['Manzanas', 'Harina', 'Azúcar'], fechaPublicacion: 'hace 4 días' },
+];
 
 @Component({
-  selector: 'app-pagina-inicio',
-  imports: [OrganismoFormularioReceta, OrganismoRecetasDestacadas, OrganismoCabecera],
+  standalone: true,
+  imports: [FormsModule, OrganismoFormularioReceta, OrganismoRecetasDestacadas, OrganismoCabecera],
   templateUrl: './pagina-inicio.html',
   styleUrl: './pagina-inicio.scss',
 })
-export class PaginaInicio {
+export class PaginaInicioComponent {
   
-  private recetasService = inject(RecetasService);
   private router = inject(Router);
+  // Estado que guarda TODAS las recetas
+  private todasLasRecetas = signal<Recipe[]>(INITIAL_RECIPES);
   
-  recetasDestacadas = this.recetasService.recetas$;
-
+  recetasMostradas = signal<Recipe[]>(INITIAL_RECIPES); 
+  
+  private nextId = INITIAL_RECIPES.length + 1;
+  
   menuPrincipal: NavigationLink[] = [
     { texto: 'Inicio', ruta: '/' },
     { texto: 'Recetas', ruta: '/recetas' },
     { texto: 'Contacto', ruta: '/contacto' }
   ];
   
-  menuUsuario: NavigationLink[] = [
-    { texto: 'Perfil', ruta: '/perfil' },
-    { texto: 'Contacto', ruta: '/contacto' },
-    { texto: 'Recetas', ruta: '/mis-recetas' }
-  ];
 
-  onNuevaReceta(nuevaReceta: NewRecipe) {
-    this.recetasService.anadirReceta(nuevaReceta).subscribe({
-      next: (receta) => {
-        console.log('Receta añadida con éxito:', receta.nombre);
-      },
-      error: (err) => {
-        console.error('Error al añadir receta:', err);
-      }
-    });
+  constructor() { }
+
+  onNuevaReceta(nuevaRecetaData: NewRecipe) {
+    const nuevaReceta: Recipe = {
+      id: this.nextId++,
+      nombre: nuevaRecetaData.nombre,
+      imagenUrl: nuevaRecetaData.urlImagen,
+      tiempoPreparacion: nuevaRecetaData.tiempoPreparacion || 'N/A', 
+      comensales: nuevaRecetaData.comensales || 0, 
+      ingredientesClave: nuevaRecetaData.listaIngredientes.split('\n').filter(i => i.trim() !== ''),
+      fechaPublicacion: 'hace unos segundos',
+    };
+
+    this.todasLasRecetas.update(currentRecetas => [nuevaReceta, ...currentRecetas]); 
+
+    this.aplicarFiltroRecetas('');
+}
+
+  
+  onBuscarRecetas(termino: string) {
+    this.aplicarFiltroRecetas(termino);
+  }
+
+  private aplicarFiltroRecetas(termino: string) {
+    const terminoNormalizado = termino.toLowerCase().trim();
+
+    if (!terminoNormalizado) {
+      // Si el término está vacío, muestra todas las recetas
+      this.recetasMostradas.set(this.todasLasRecetas());
+      return;
+    }
+
+    const recetasFiltradas = this.todasLasRecetas().filter(receta =>
+      receta.nombre.toLowerCase().includes(terminoNormalizado) ||
+      receta.ingredientesClave.some(ing => ing.toLowerCase().includes(terminoNormalizado))
+    );
+
+    this.recetasMostradas.set(recetasFiltradas);
   }
 
   onVerTodasRecetas() {
@@ -51,4 +88,16 @@ export class PaginaInicio {
   onNavegarDetalle(recetaId: number) {
     this.router.navigate(['/recetas', recetaId]);
   }
+  onBorrarReceta(recetaId: number) {
+        console.log('Evento: Borrar Receta ID:', recetaId);
+        
+        this.todasLasRecetas.update(currentRecetas => 
+            currentRecetas.filter(r => r.id !== recetaId)
+        );
+
+        this.aplicarFiltroRecetas(''); 
+        
+        // Si tienes un término de búsqueda activo, llama a:
+        // this.aplicarFiltroRecetas(this.terminoBusqueda);
+    }
 }

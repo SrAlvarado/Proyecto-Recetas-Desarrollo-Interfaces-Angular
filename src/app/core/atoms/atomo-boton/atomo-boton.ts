@@ -11,6 +11,8 @@ export class AtomoBoton {
   claseBotonBootsStrap = input<string>('btn-primary')
   clickBoton = output<void>();
   tipo = input<string>('button');
+  estirar = input<boolean>(false);
+  claseUtilidad = input<string>('');
   manejarClick() {
     this.clickBoton.emit();
   }

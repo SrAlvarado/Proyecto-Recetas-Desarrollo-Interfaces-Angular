@@ -1,6 +1,7 @@
 <button
   [type]="tipo()"
-  class="btn {{ claseBotonBootsStrap() }}"
+  class="btn {{ claseBotonBootsStrap() }} {{ claseUtilidad() }}"
+  [class.w-100]="estirar()" 
   (click)="manejarClick()">
   {{ texto() }}
 </button>

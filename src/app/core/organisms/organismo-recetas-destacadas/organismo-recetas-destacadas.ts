@@ -11,12 +11,12 @@ import { AtomoTituloSeccion } from "../../atoms/atomo-titulo-seccion/atomo-titul
   styleUrl: './organismo-recetas-destacadas.scss',
 })
 export class OrganismoRecetasDestacadas {
-recetas = input.required<Recipe[]>(); 
+  recetas = input.required<Recipe[]>(); 
 
   verTodas = output<void>();
 
   navegarDetalle = output<number>(); 
-
+  borrarReceta = output<number>();
   onVerTodas() {
     this.verTodas.emit();
   }
@@ -24,4 +24,7 @@ recetas = input.required<Recipe[]>();
   onNavegarDetalle(recetaId: number) {
     this.navegarDetalle.emit(recetaId);
   }
+  onBorrarReceta(recetaId: number) {
+        this.borrarReceta.emit(recetaId);
+    }
 }

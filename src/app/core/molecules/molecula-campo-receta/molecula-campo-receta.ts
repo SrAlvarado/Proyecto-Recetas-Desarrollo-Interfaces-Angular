@@ -10,16 +10,20 @@ import { AtomoCampoFormulario } from '../../atoms/atomo-campo-formulario/atomo-c
   styleUrl: './molecula-campo-receta.scss',
 })
 export class MoleculaCampoReceta {
-receta = input.required<NewRecipe>();
-
-  // Salida para notificar cualquier cambio en el modelo
+  receta = input.required<NewRecipe>();
   recetaChange = output<NewRecipe>();
 
-  // Notifica al padre que un campo ha cambiado
-  onFieldChange(campo: keyof NewRecipe, valor: string) {
+  onFieldChange(campo: keyof NewRecipe, valor: string | number) {
+    let valorFinal: string | number | null = valor;
+
+    if (campo === 'comensales') {
+        const num = Number(valor);
+        valorFinal = isNaN(num) || num <= 0 ? null : num;
+    }
+
     const nuevoModelo: NewRecipe = {
       ...this.receta(),
-      [campo]: valor,
+      [campo]: valorFinal, 
     };
     this.recetaChange.emit(nuevoModelo);
   }

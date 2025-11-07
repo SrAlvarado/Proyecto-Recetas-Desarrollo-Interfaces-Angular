@@ -14,10 +14,13 @@ import { AtomoMedidaTiempo } from "../../atoms/atomo-medida-tiempo/atomo-medida-
 export class MoleculaTarjetaReceta {
   receta = input.required<Recipe>(); 
 
-  // Evento que se emite cuando el usuario quiere ver los detalles
   verReceta = output<number>(); 
-
+  borrarReceta = output<number>();
   onVerReceta() {
     this.verReceta.emit(this.receta().id);
+  }
+  onBorrarReceta() {
+
+    this.borrarReceta.emit(this.receta().id);
   }
 }
