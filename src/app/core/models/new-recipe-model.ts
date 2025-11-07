@@ -4,4 +4,6 @@ export interface NewRecipe {
   listaIngredientes: string; 
   tiempoPreparacion: string; 
   comensales: number | null; 
+  descripcion: string;
+  instrucciones: string; 
 }

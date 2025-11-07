@@ -4,6 +4,8 @@ export interface Recipe {
   imagenUrl: string;
   tiempoPreparacion: string;
   comensales: number;
-  ingredientesClave: string[]; // Ingredientes que se muestran en la tarjeta
+  ingredientesClave: string[];
   fechaPublicacion: string;
+  descripcion: string;
+  instrucciones: string[]; 
 }

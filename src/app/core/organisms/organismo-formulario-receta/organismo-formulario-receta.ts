@@ -7,7 +7,16 @@ import { AtomoTituloSeccion } from '../../atoms/atomo-titulo-seccion/atomo-titul
 import { AtomoContenedorFormulario } from '../../atoms/atomo-contenedor-formulario/atomo-contenedor-formulario';
 import { AtomoTituloFormulario } from '../../atoms/atomo-titulo-formulario/atomo-titulo-formulario';
 
-const INITIAL_RECIPE: NewRecipe = { nombre: '', urlImagen: '', listaIngredientes: '', tiempoPreparacion: '', comensales: null };
+const INITIAL_RECIPE: NewRecipe = { 
+    nombre: '', 
+    urlImagen: '', 
+    listaIngredientes: '',
+    tiempoPreparacion: '',
+    comensales: null,
+    descripcion: '',
+    instrucciones: ''
+};
+
 @Component({
   selector: 'app-organismo-formulario-receta',
   imports: [AtomoContenedorFormulario, AtomoTituloFormulario, MoleculaCampoReceta, AtomoBoton],
@@ -16,7 +25,6 @@ const INITIAL_RECIPE: NewRecipe = { nombre: '', urlImagen: '', listaIngredientes
 })
 export class OrganismoFormularioReceta {
   recipeModel = signal<NewRecipe>(INITIAL_RECIPE);
-
   anadirReceta = output<NewRecipe>();
   
   onLimpiar() {

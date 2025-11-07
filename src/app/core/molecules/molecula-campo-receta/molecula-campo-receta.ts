@@ -13,14 +13,12 @@ export class MoleculaCampoReceta {
   receta = input.required<NewRecipe>();
   recetaChange = output<NewRecipe>();
 
-  onFieldChange(campo: keyof NewRecipe, valor: string | number) {
+  onFieldChange(campo: keyof NewRecipe, valor: string | number) { 
     let valorFinal: string | number | null = valor;
-
     if (campo === 'comensales') {
         const num = Number(valor);
         valorFinal = isNaN(num) || num <= 0 ? null : num;
     }
-
     const nuevoModelo: NewRecipe = {
       ...this.receta(),
       [campo]: valorFinal, 

@@ -1,0 +1,51 @@
+@if (receta()) {
+<div class="modal fade show d-block" tabindex="-1" aria-modal="true" role="dialog">
+  <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title">{{ receta()!.nombre }}</h5>
+        <button type="button" class="btn-close btn-close-white" (click)="onCerrar()"></button>
+      </div>
+      
+      <div class="modal-body">
+        
+        <div class="row mb-4">
+          <div class="col-md-5">
+            <img [src]="receta()!.imagenUrl" [alt]="receta()!.nombre" class="img-fluid rounded shadow-sm">
+          </div>
+          <div class="col-md-7 mt-3 mt-md-0">
+            <h4 class="text-primary mb-3">Detalles y Preparación</h4>
+            
+            <div class="d-flex mb-3">
+              <app-atomo-medida-tiempo etiqueta="Tiempo" [valor]="receta()!.tiempoPreparacion"></app-atomo-medida-tiempo>
+              <app-atomo-medida-tiempo etiqueta="Comensales" [valor]="receta()!.comensales"></app-atomo-medida-tiempo>
+            </div>
+            
+            <p class="lead">{{ receta()!.descripcion }}</p>
+          </div>
+        </div>
+
+        <hr>
+        <h4 class="text-primary mt-4 mb-3">Instrucciones Paso a Paso</h4>
+        
+        <ol class="list-group list-group-numbered">
+          @for (paso of receta()!.instrucciones; track $index) {
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+              <div class="ms-2 me-auto">{{ paso }}</div>
+            </li>
+          }
+        </ol>
+
+      </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="onCerrar()">Cerrar</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop fade show"></div>
+}

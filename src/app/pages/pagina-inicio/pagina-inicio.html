@@ -18,5 +18,8 @@
   <app-organismo-formulario-receta
     (anadirReceta)="onNuevaReceta($event)">
   </app-organismo-formulario-receta>
-
+  <app-organismo-modal-receta 
+      [receta]="recetaSeleccionada()"
+      (cerrarModal)="onCerrarModal()">
+    </app-organismo-modal-receta>
 </main>

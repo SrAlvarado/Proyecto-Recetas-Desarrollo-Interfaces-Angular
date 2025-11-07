@@ -1,6 +1,4 @@
-<div class="row">
-
-  <div class="col-lg-3 col-md-6">
+<div class="row g-3"> <div class="col-md-6">
     <app-atomo-campo-formulario
       label="Nombre de la receta"
       placeholder="Ej. Paella valenciana"
@@ -9,7 +7,7 @@
     </app-atomo-campo-formulario>
   </div>
   
-  <div class="col-lg-3 col-md-6">
+  <div class="col-md-6">
     <app-atomo-campo-formulario
       label="URL de la imagen"
       placeholder="https://ejemplo.com/imagen.jpg"
@@ -18,7 +16,7 @@
     </app-atomo-campo-formulario>
   </div>
 
-  <div class="col-lg-3 col-md-6">
+  <div class="col-md-6">
     <app-atomo-campo-formulario
       label="Tiempo de preparación"
       placeholder="Ej: 1h 30 min"
@@ -27,12 +25,22 @@
     </app-atomo-campo-formulario>
   </div>
 
-  <div class="col-lg-3 col-md-6">
+  <div class="col-md-6">
     <app-atomo-campo-formulario
       label="Comensales"
       placeholder="Ej: 4"
       [valor]="receta().comensales?.toString() || ''"
       (valorChange)="onFieldChange('comensales', $event)">
+    </app-atomo-campo-formulario>
+  </div>
+
+  <div class="col-12">
+    <app-atomo-campo-formulario
+      label="Descripción de la receta"
+      placeholder="Escribe un resumen o detalles importantes sobre la receta."
+      tipo="textarea"
+      [valor]="receta().descripcion"
+      (valorChange)="onFieldChange('descripcion', $event)">
     </app-atomo-campo-formulario>
   </div>
 
@@ -45,4 +53,15 @@
       (valorChange)="onFieldChange('listaIngredientes', $event)">
     </app-atomo-campo-formulario>
   </div>
+
+  <div class="col-12">
+    <app-atomo-campo-formulario
+      label="Pasos a seguir (Instrucciones)"
+      ayuda="Un paso por línea."
+      tipo="textarea"
+      [valor]="receta().instrucciones"
+      (valorChange)="onFieldChange('instrucciones', $event)">
+    </app-atomo-campo-formulario>
+  </div>
+
 </div>
