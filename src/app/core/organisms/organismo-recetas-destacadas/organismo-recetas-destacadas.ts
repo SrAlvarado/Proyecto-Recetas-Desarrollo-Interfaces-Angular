@@ -15,8 +15,9 @@ export class OrganismoRecetasDestacadas {
 
   verTodas = output<void>();
 
-  navegarDetalle = output<number>(); 
+  navegarDetalle = output<number>();
   borrarReceta = output<number>();
+  
   onVerTodas() {
     this.verTodas.emit();
   }
@@ -25,6 +26,6 @@ export class OrganismoRecetasDestacadas {
     this.navegarDetalle.emit(recetaId);
   }
   onBorrarReceta(recetaId: number) {
-        this.borrarReceta.emit(recetaId);
-    }
+      this.borrarReceta.emit(recetaId);
+  }
 }

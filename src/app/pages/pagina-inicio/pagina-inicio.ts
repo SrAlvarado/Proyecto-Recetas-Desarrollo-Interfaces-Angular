@@ -89,15 +89,10 @@ export class PaginaInicioComponent {
     this.router.navigate(['/recetas', recetaId]);
   }
   onBorrarReceta(recetaId: number) {
-        console.log('Evento: Borrar Receta ID:', recetaId);
-        
-        this.todasLasRecetas.update(currentRecetas => 
-            currentRecetas.filter(r => r.id !== recetaId)
-        );
-
-        this.aplicarFiltroRecetas(''); 
-        
-        // Si tienes un término de búsqueda activo, llama a:
-        // this.aplicarFiltroRecetas(this.terminoBusqueda);
-    }
+      this.todasLasRecetas.update(currentRecetas => 
+          currentRecetas.filter(r => r.id !== recetaId)
+      );
+      this.aplicarFiltroRecetas(''); 
+      console.log('Receta eliminada con ID:', recetaId);
+  }
 }

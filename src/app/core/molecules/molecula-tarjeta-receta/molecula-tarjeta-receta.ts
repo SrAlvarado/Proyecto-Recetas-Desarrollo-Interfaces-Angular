@@ -15,7 +15,7 @@ export class MoleculaTarjetaReceta {
   receta = input.required<Recipe>(); 
 
   verReceta = output<number>(); 
-  borrarReceta = output<number>();
+ borrarReceta = output<number>();
   onVerReceta() {
     this.verReceta.emit(this.receta().id);
   }
